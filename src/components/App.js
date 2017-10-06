@@ -5,6 +5,7 @@ import { createBomb, reduceBombs } from '../utils/bombUtils';
 import words from 'word-list-json';
 
 import TyperArea from './typerArea/TyperArea';
+import Board from './board/Board';
 
 class App extends Component {
 
@@ -12,9 +13,12 @@ class App extends Component {
         super(props);
 
         this.state = {
-            bombs: [],
+            bombs: [createBomb("start")],
+            count: 0,
         }
+
         this.bombTest = this.bombTest.bind(this);
+        this.start = this.start.bind(this);
     }
 
     bombTest(word){
@@ -26,9 +30,23 @@ class App extends Component {
         }));
     }
 
+    start() {
+        setInterval( () => {
+            this.setState( (prevState) => ({
+                bombs: [ ...prevState.bombs, createBomb(words[prevState.count]) ],
+                count: prevState.count + 1
+            }));
+
+        }, 1000)
+    }
+
     render(){
         return (
-            <TyperArea func={this.bombTest}/>
+            <div>
+                <TyperArea func={this.bombTest}/>
+                <button onClick={this.start}>Start</button>
+                <Board arr={this.state.bombs}/>
+            </div>
         );
     }
 }
