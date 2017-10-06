@@ -11,4 +11,4 @@ This is an educational typing game. I would like to give credit to the typing ga
 ## Credits
 
 - Made by Christian Hansen
-- 
+- [word-list-json](https://www.npmjs.com/package/word-list-json) by Sindre Sorhus

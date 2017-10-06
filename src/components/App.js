@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { createBomb, reduceBombs } from '../utils/bombUtils';
 
+import words from 'word-list-json';
+
 import TyperArea from './typerArea/TyperArea';
 
 class App extends Component {
@@ -10,10 +12,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            bombs: [createBomb("hello"), createBomb("work")],
+            bombs: [],
         }
-        console.log(this.state.bombs);
-
         this.bombTest = this.bombTest.bind(this);
     }
 
@@ -24,8 +24,6 @@ class App extends Component {
         this.setState( () => ({
             bombs: temp
         }));
-        setTimeout(() => {console.log(this.state.bombs)}, .500);
-        
     }
 
     render(){
